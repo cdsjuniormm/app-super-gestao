@@ -13,18 +13,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PrincipalController@index');
+Route::get(
+    '/',
+    'PrincipalController@index'
+)->name('site.index');
 
-Route::get('/sobre', 'SobreController@index');
+Route::get(
+    '/sobre',
+    'SobreController@index'
+)->name('site.sobre');
 
-Route::get('/contato', 'ContatoController@index');
+Route::get(
+    '/contato',
+    'ContatoController@index'
+)->name('site.contato');
 
-Route::get('/login', function() { return ''; });
+Route::get(
+    '/login',
+    function() { return ''; }
+)->name('site.login');
 
 Route::prefix('/app')->group(function() {
-    Route::get('/clientes', function() { return ''; });
+    Route::get(
+        '/clientes',
+        function() { return ''; }
+    )->name('app.clientes');
 
-    Route::get('/fornecedores', function() { return ''; });
+    Route::get(
+        '/fornecedores',
+        function() { return ''; }
+    )->name('app.fornecedores');
     
-    Route::get('/produtos', function() { return ''; });    
+    Route::get(
+        '/produtos',
+        function() { return ''; }
+    )->name('app.produtos');    
 });

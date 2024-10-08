@@ -1,4 +1,4 @@
-<h3>Principal</h3>
+<h3>Sobre nós</h3>
 
 <ul>
     <li>
