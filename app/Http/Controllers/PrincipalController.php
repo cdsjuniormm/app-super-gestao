@@ -8,6 +8,6 @@ class PrincipalController extends Controller
 {
     public function index()
     {
-        print 'Inicio';
+        return view('site.principal');
     }
 }

@@ -8,6 +8,6 @@ class ContatoController extends Controller
 {
     public function index()
     {
-        print 'Contato';
+        return view('site.contato');
     }
 }

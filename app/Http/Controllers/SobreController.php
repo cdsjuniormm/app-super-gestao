@@ -8,6 +8,6 @@ class SobreController extends Controller
 {
     public function index()
     {
-        print 'Sobre';
+        return view('site.sobre');
     }
 }
