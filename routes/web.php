@@ -49,3 +49,8 @@ Route::prefix('/app')->group(function() {
         function() { return ''; }
     )->name('app.produtos');    
 });
+
+Route::fallback(function () {
+    $route = route('site.index');
+    return "Pagina não encontrada. <a href='{$route}'>Inicio</a>";
+});
