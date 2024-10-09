@@ -28,6 +28,11 @@ Route::get(
     'ContatoController@index'
 )->name('site.contato');
 
+Route::post(
+    '/contato',
+    'ContatoController@post'
+)->name('site.contato');
+
 Route::get(
     '/login',
     function() { return ''; }

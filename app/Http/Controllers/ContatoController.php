@@ -10,4 +10,9 @@ class ContatoController extends Controller
     {
         return view('site.contato');
     }
+
+    public function post()
+    {
+        redirect('site.contato');
+    }
 }
