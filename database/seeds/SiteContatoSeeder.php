@@ -12,12 +12,6 @@ class SiteContatoSeeder extends Seeder
      */
     public function run()
     {
-        $contato = new SiteContato();
-        $contato->nome = 'Sistema SG';
-        $contato->telefone = '47 98888-8888';
-        $contato->email = 'sistemasg@gmail.com';
-        $contato->motivo = 1;
-        $contato->Mensagem = 'Super Gestão';
-        $contato->save();
+        factory(SiteContato::class, 100)->create();
     }
 }
