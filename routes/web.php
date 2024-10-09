@@ -41,7 +41,7 @@ Route::prefix('/app')->group(function() {
 
     Route::get(
         '/fornecedores',
-        function() { return ''; }
+        'FornecedorController@index'
     )->name('app.fornecedores');
     
     Route::get(
