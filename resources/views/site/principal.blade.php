@@ -24,7 +24,7 @@
 
         <div class="direita">
             <div class="contato">
-                @component('site.base.components.form-contato', ['class' => 'borda-branca'])
+                @component('site.base.components.form-contato', ['class' => 'borda-branca', 'motivo_contatos' => $motivo_contatos])
                     <h1>Contato</h1>
                     <p>
                         Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.

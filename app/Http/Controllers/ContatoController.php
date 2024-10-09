@@ -9,7 +9,9 @@ class ContatoController extends Controller
 {
     public function index()
     {
-        return view('site.contato');
+        return view('site.contato', [
+            'motivo_contatos' => SiteContato::TEXTO_MOTIVO
+        ]);
     }
 
     public function post(Request $request)
