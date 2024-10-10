@@ -41,6 +41,11 @@ class AuthController extends Controller
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->name;
 
-        return redirect()->route('app.clientes');
+        return redirect()->route('app.home');
+    }
+
+    public function deauthenticate()
+    {
+        die('deauthenticate');
     }
 }

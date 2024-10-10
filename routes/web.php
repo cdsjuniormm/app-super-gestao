@@ -47,19 +47,29 @@ Route::post(
 Route::middleware(AuthMiddleware::class)
 ->prefix('/app')->group(function() {
     Route::get(
-        '/clientes',
-        function() { return ''; }
-    )->name('app.clientes');
+        '/home',
+        'HomeController@index'
+    )->name('app.home');
 
     Route::get(
-        '/fornecedores',
-        'FornecedorController@index'
-    )->name('app.fornecedores');
-    
+        '/logout',
+        'AuthController@deauthenticate'
+    )->name('app.logout');
+
     Route::get(
-        '/produtos',
-        function() { return ''; }
-    )->name('app.produtos');    
+        '/cliente',
+        'ClienteController@index'
+    )->name('app.cliente');
+
+    Route::get(
+        '/fornecedor',
+        'FornecedorController@index'
+    )->name('app.fornecedor');
+
+    Route::get(
+        '/produto',
+        'ProdutoController@index'
+    )->name('app.produto');
 });
 
 Route::fallback(function () {
