@@ -19,7 +19,7 @@ class ContatoController extends Controller
     {
         $request->validate([
             'nome' => 'required|min:3|max:50',
-            'email' => 'required|min:8|max:80',
+            'email' => 'email',
             'telefone' => 'required|min:8|max:20',
             'motivo' => 'required|in:1,2,3',
             'mensagem' => 'required|max:2000'
