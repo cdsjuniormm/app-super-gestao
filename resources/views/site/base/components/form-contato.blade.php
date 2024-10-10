@@ -9,8 +9,8 @@
     <br>
     <select name="motivo" class="{{ $class }}">
         <option value="">Qual o motivo do contato?</option>
-        @foreach ($motivo_contatos as $key => $motivo)
-            <option value="{{ $key }}" {{ old('motivo') == $key ? 'selected' : '' }}>{{ $motivo }}</option>
+        @foreach ($motivo_contatos as $motivo)
+            <option value="{{ $motivo->id }}" {{ old('motivo') == $motivo->id ? 'selected' : '' }}>{{ $motivo->nome }}</option>
         @endforeach
     </select>
     <br>
