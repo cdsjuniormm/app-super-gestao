@@ -21,7 +21,7 @@ class ContatoController extends Controller
             'nome' => 'required|min:3|max:50',
             'email' => 'email',
             'telefone' => 'required|min:8|max:20',
-            'motivo' => 'required|in:1,2,3',
+            'motivo_contato_id' => 'required|in:1,2,3',
             'mensagem' => 'required|max:2000'
         ]);
 
