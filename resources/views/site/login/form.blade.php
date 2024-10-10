@@ -1,5 +1,5 @@
 @extends('site.base.section')
-@section('titulo', 'Contato')
+@section('titulo', 'Login')
 @section('conteudo')  
     <div class="conteudo-pagina">
         <div class="titulo-pagina">

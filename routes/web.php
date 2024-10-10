@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,7 @@ Route::post(
 )->name('site.contato');
 
 Route::get(
-    '/login',
+    '/login/{msgErro?}',
     'AuthController@index'
 )->name('site.login');
 
@@ -43,7 +44,8 @@ Route::post(
     'AuthController@authenticate'
 )->name('auth.authenticate');
 
-Route::prefix('/app')->group(function() {
+Route::middleware(AuthMiddleware::class)
+->prefix('/app')->group(function() {
     Route::get(
         '/clientes',
         function() { return ''; }
