@@ -35,8 +35,13 @@ Route::post(
 
 Route::get(
     '/login',
-    function() { return ''; }
+    'AuthController@index'
 )->name('site.login');
+
+Route::post(
+    '/auth',
+    'AuthController@authenticate'
+)->name('auth.authenticate');
 
 Route::prefix('/app')->group(function() {
     Route::get(
