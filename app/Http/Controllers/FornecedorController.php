@@ -110,4 +110,22 @@ class FornecedorController extends Controller
             'msgSucesso' => 'Fornecedor cadastrado com sucesso.'
         ]);
     }
+
+    /**
+     * Exclui um fornecedor.
+     *
+     * @param integer $id
+     *
+     * @return RedirectResponse
+     */
+    public function delete(int $id): RedirectResponse
+    {
+        $fornecedor = Fornecedor::find($id);
+
+        if ($fornecedor->id) {
+            $fornecedor->delete();
+        }
+
+        return redirect()->route('app.fornecedor');
+    }
 }

@@ -32,7 +32,7 @@
                                 <td>{{ $fornecedor->site }}</td>
                                 <td>{{ $fornecedor->uf }}</td>
                                 <td><a href="{{ route('app.fornecedor.form', $fornecedor->id) }}">Editar</a></td>
-                                <td><a href="">Excluír</a></td>
+                                <td><a href="{{ route('app.fornecedor.delete', $fornecedor->id) }}">Excluír</a></td>
                             </tr>
                         @endforeach
                     </tbody>

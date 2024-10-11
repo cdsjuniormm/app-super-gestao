@@ -87,6 +87,11 @@ Route::middleware(AuthMiddleware::class)
     )->name('app.fornecedor.post');
 
     Route::get(
+        '/fornecedor/{id}',
+        'FornecedorController@delete'
+    )->name('app.fornecedor.delete');
+
+    Route::get(
         '/produto',
         'ProdutoController@index'
     )->name('app.produto');
