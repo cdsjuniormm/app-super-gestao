@@ -13,8 +13,18 @@ class FornecedorController extends Controller
         ];
 
         return view(
-            'app.fornecedor',
+            'app.fornecedor.index',
             compact('fornecedores')
         );
+    }
+
+    public function grid()
+    {
+        return view('app.fornecedor.grid');
+    }
+
+    public function form()
+    {
+        return view('app.fornecedor.form');
     }
 }
