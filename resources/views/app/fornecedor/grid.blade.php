@@ -22,21 +22,22 @@
                         <th>Site</th>
                         <th>UF</th>
                         <th>Editar</th>
-                        <th>???</th>
+                        <th>Excluír</th>
                     </thead>
                     <tbody>
                         @foreach ($fornecedores as $fornecedor)
                             <tr>
                                 <td>{{ $fornecedor->nome }}</td>
-                                <td>{{ $fornecedor->nome }}</td>
-                                <td>{{ $fornecedor->nome }}</td>
-                                <td>{{ $fornecedor->nome }}</td>
+                                <td>{{ $fornecedor->email }}</td>
+                                <td>{{ $fornecedor->site }}</td>
+                                <td>{{ $fornecedor->uf }}</td>
                                 <td><a href="{{ route('app.fornecedor.form', $fornecedor->id) }}">Editar</a></td>
                                 <td><a href="">Excluír</a></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                {{ $fornecedores->appends($request)->links() }}
             </div>
         </div>
     </div>

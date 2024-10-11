@@ -72,6 +72,11 @@ Route::middleware(AuthMiddleware::class)
     )->name('app.fornecedor.grid');
 
     Route::get(
+        '/fornecedor/listar',
+        'FornecedorController@grid'
+    )->name('app.fornecedor.grid');
+
+    Route::get(
         '/fornecedor/form/{id?}/{msgSucesso?}',
         'FornecedorController@form'
     )->name('app.fornecedor.form');

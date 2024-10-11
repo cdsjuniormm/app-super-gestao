@@ -32,10 +32,11 @@ class FornecedorController extends Controller
             ->where('email', 'like', "%{$request->input('email')}%")
             ->where('site', 'like', "%{$request->input('site')}%")
             ->where('uf', 'like', "%{$request->input('uf')}%")
-            ->get();
+            ->paginate(5);
 
         return view('app.fornecedor.grid', [
-            'fornecedores' => $fornecedores
+            'fornecedores' => $fornecedores,
+            'request' => $request->all()
         ]);
     }
 
