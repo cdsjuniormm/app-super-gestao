@@ -15,6 +15,7 @@
 
         <div class="informacao-pagina">
             <div style="width: 30%; margin: auto;">
+                {{ $msgSucesso }}
                 <form action="{{ route('app.fornecedor.post') }}" method="POST">
                     @csrf
                     <input type="text" name="nome" value="{{ old('nome') }}" placeholder="Nome" class="borda-preta">

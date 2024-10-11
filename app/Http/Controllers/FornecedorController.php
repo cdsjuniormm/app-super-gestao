@@ -9,14 +9,7 @@ class FornecedorController extends Controller
 {
     public function index()
     {
-        $fornecedores = [
-            []
-        ];
-
-        return view(
-            'app.fornecedor.index',
-            compact('fornecedores')
-        );
+        return view('app.fornecedor.index');
     }
 
     public function grid()
@@ -24,9 +17,11 @@ class FornecedorController extends Controller
         return view('app.fornecedor.grid');
     }
 
-    public function form()
+    public function form($msgSucesso = null)
     {
-        return view('app.fornecedor.form');
+        return view('app.fornecedor.form', [
+            'msgSucesso' => $msgSucesso
+        ]);
     }
 
     public function post(Request $request)
@@ -50,6 +45,8 @@ class FornecedorController extends Controller
 
         Fornecedor::create($request->all());
 
-        return redirect()->route('app.fornecedor.form');
+        return redirect()->route('app.fornecedor.form', [
+            'msgSucesso' => 'Fornecedor cadastrado com sucesso.'
+        ]);
     }
 }
