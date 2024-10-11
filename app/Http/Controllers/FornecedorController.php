@@ -3,28 +3,75 @@
 namespace App\Http\Controllers;
 
 use App\Fornecedor;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
 {
-    public function index()
+    /**
+     * Form de pesquisa de fornecedores.
+     *
+     * @return View
+     */
+    public function index(): View
     {
         return view('app.fornecedor.index');
     }
 
-    public function grid()
+    /**
+     * Lista fornecedores filtrados.
+     *
+     * @param Request $request
+     *
+     * @return View
+     */
+    public function grid(Request $request): View
     {
-        return view('app.fornecedor.grid');
+        $fornecedores = Fornecedor::where('nome', 'like', "%{$request->input('nome')}%")
+            ->where('email', 'like', "%{$request->input('email')}%")
+            ->where('site', 'like', "%{$request->input('site')}%")
+            ->where('uf', 'like', "%{$request->input('uf')}%")
+            ->get();
+
+        return view('app.fornecedor.grid', [
+            'fornecedores' => $fornecedores
+        ]);
     }
 
-    public function form($msgSucesso = null)
-    {
+    /**
+     * Formulário de fornecedores.
+     *
+     * @param mixed $id
+     * @param mixed $msgSucesso
+     *
+     * @return View
+     */
+    public function form(
+        $id = null,
+        $msgSucesso = null
+    ): View {
+        $fornecedor = null;
+
+        if ($id) {
+            $fornecedor = Fornecedor::find($id);
+        }
+
         return view('app.fornecedor.form', [
+            'fornecedor' => $fornecedor,
+            'update' => isset($fornecedor->id),
             'msgSucesso' => $msgSucesso
         ]);
     }
 
-    public function post(Request $request)
+    /**
+     * Cadastra e edita fornecedores.
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function post(Request $request): RedirectResponse
     {
         $request->validate(
             [
@@ -43,9 +90,22 @@ class FornecedorController extends Controller
             ]
         );
 
-        Fornecedor::create($request->all());
+        $id = $request->input('id');
+        $fornecedor = Fornecedor::class;
+
+        if ($id) {
+            $fornecedor::find($id)->update($request->all());
+
+            return redirect()->route('app.fornecedor.form', [
+                'id' => $id,
+                'msgSucesso' => 'Fornecedor editado com sucesso.'
+            ]);
+        }
+
+        $fornecedor::create($request->all());
 
         return redirect()->route('app.fornecedor.form', [
+            'id' => '0',
             'msgSucesso' => 'Fornecedor cadastrado com sucesso.'
         ]);
     }

@@ -14,7 +14,30 @@
         </div>
 
         <div class="informacao-pagina">
-            grid
+            <div style="width: 70%; margin: auto;">
+                <table border="1" width="100%">
+                    <thead>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Site</th>
+                        <th>UF</th>
+                        <th>Editar</th>
+                        <th>???</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($fornecedores as $fornecedor)
+                            <tr>
+                                <td>{{ $fornecedor->nome }}</td>
+                                <td>{{ $fornecedor->nome }}</td>
+                                <td>{{ $fornecedor->nome }}</td>
+                                <td>{{ $fornecedor->nome }}</td>
+                                <td><a href="{{ route('app.fornecedor.form', $fornecedor->id) }}">Editar</a></td>
+                                <td><a href="">Excluír</a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection
