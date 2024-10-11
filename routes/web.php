@@ -76,6 +76,11 @@ Route::middleware(AuthMiddleware::class)
         'FornecedorController@form'
     )->name('app.fornecedor.form');
 
+    Route::post(
+        '/fornecedor',
+        'FornecedorController@post'
+    )->name('app.fornecedor.post');
+
     Route::get(
         '/produto',
         'ProdutoController@index'
