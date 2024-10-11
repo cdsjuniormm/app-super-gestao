@@ -17,6 +17,8 @@
                     {{ $errors->has('senha') ? $errors->first('senha') : '' }}
                     <br>
                     <button type="submit" class="borda-preta">ENVIAR</button>
+                    <br>
+                    {{ $msgErro ?? '' }}
                 </form>
             </div>
         </div>  

@@ -3,17 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function index (Request $request)
+    /**
+     * Exibe formulário de login.
+     *
+     * @param string|null $msgErro
+     *
+     * @return View
+     */
+    public function index($msgErro = null)
     {
         return view('site.login.form', [
-            'msgErro' => $request->get('msgErro')
+            'msgErro' => $msgErro
         ]);
     }
 
+    /**
+     * Realiza autenticação do usuário.
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
     public function authenticate(Request $request)
     {
         $request->validate(
