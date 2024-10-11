@@ -59,8 +59,14 @@ class AuthController extends Controller
         return redirect()->route('app.home');
     }
 
+    /**
+     * Realiza o logout do usuário.
+     *
+     * @return RedirectResponse
+     */
     public function deauthenticate()
     {
-        die('deauthenticate');
+        session_destroy();
+        return redirect()->route('site.index');
     }
 }
