@@ -17,10 +17,18 @@
             <div style="width: 30%; margin: auto;">
                 <form action="{{ route('app.fornecedor.post') }}" method="POST">
                     @csrf
-                    <input type="text" name="nome" placeholder="Nome" class="borda-preta">
-                    <input type="email" name="email" placeholder="Email" class="borda-preta">
-                    <input type="text" name="site" placeholder="Site" class="borda-preta">
-                    <input type="text" name="uf" placeholder="UF" class="borda-preta">
+                    <input type="text" name="nome" value="{{ old('nome') }}" placeholder="Nome" class="borda-preta">
+                    {{ $errors->has('nome') ? $errors->first('nome') : '' }}
+                    <br>
+                    <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" class="borda-preta">
+                    {{ $errors->has('email') ? $errors->first('email') : '' }}
+                    <br>
+                    <input type="text" name="site" value="{{ old('site') }}" placeholder="Site" class="borda-preta">
+                    {{ $errors->has('site') ? $errors->first('site') : '' }}
+                    <br>
+                    <input type="text" name="uf" value="{{ old('uf') }}" placeholder="UF" class="borda-preta">
+                    {{ $errors->has('uf') ? $errors->first('uf') : '' }}
+                    <br>
                     <button type="submit" class="borda-preta">Cadastrar</button>
                 </form>
             </div>
