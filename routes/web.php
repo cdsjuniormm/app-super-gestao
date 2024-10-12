@@ -91,10 +91,7 @@ Route::middleware(AuthMiddleware::class)
         'FornecedorController@delete'
     )->name('app.fornecedor.delete');
 
-    Route::get(
-        '/produto',
-        'ProdutoController@index'
-    )->name('app.produto');
+    Route::resource('produto', 'ProdutoController');
 });
 
 Route::fallback(function () {
