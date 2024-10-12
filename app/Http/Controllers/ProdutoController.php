@@ -112,13 +112,16 @@ class ProdutoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified product from storage.
      *
      * @param  \App\Produto  $produto
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Produto $produto)
     {
-        //
+        $produto->delete();
+
+        return redirect()->route('produto.index');
     }
 }
