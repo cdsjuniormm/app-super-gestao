@@ -95,15 +95,20 @@ class ProdutoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified product in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Produto  $produto
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $produto->update($request->all());
+
+        return redirect()->route('produto.show', [
+            'produto' => $produto->id
+        ]);
     }
 
     /**
