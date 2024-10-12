@@ -80,14 +80,18 @@ class ProdutoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified product.
      *
      * @param  \App\Produto  $produto
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Produto $produto)
     {
-        //
+        return view('app.produto.edit', [
+            'produto' => $produto,
+            'unidades' => Unidade::all()
+        ]);
     }
 
     /**
