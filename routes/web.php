@@ -92,6 +92,8 @@ Route::middleware(AuthMiddleware::class)
     )->name('app.fornecedor.delete');
 
     Route::resource('produto', 'ProdutoController');
+
+    Route::resource('produto-detalhe', 'ProdutoDetalheController');
 });
 
 Route::fallback(function () {
