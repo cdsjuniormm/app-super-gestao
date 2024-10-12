@@ -1,9 +1,9 @@
 @extends('app.base.section')
-@section('titulo', 'Produto - Editar')
+@section('titulo', 'Produto')
 @section('conteudo')
     <div class="conteudo-pagina">
         <div class="titulo-pagina-app">
-            <h1>Produto - Editar</h1>
+            <h1>Produto - @if ($edit) Editar @else Cadastrar @endif </h1>
         </div>
 
         <div class="menu">
@@ -15,9 +15,18 @@
 
         <div class="informacao-pagina">
             <div style="width: 30%; margin: auto;">
-                <form action="{{ route('produto.update', ['produto' => $produto->id]) }}" method="POST">
+                <form 
+                    @if ($edit)
+                        action="{{ route('produto.update', ['produto' => $produto->id]) }}"
+                    @else
+                        action="{{ route('produto.store') }}"
+                    @endif
+                    method="POST"
+                >
                     @csrf
-                    @method('PUT')
+                    @if ($edit)
+                        @method('PUT')
+                    @endif
                     <input type="text" name="nome" value="{{ $produto->nome ?? old('nome') }}" placeholder="Nome" class="borda-preta">
                     {{ $errors->has('nome') ? $errors->first('nome') : '' }}
                     <br>
@@ -35,7 +44,7 @@
                     </select>
                     {{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}
                     <br>
-                    <button type="submit" class="borda-preta">Editar</button>
+                    <button type="submit" class="borda-preta">Salvar</button>
                 </form>
             </div>
         </div>
