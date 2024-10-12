@@ -32,7 +32,7 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        return view('app.produto.form', [
+        return view('app.produto.create', [
             'unidades' => Unidade::all(),
             'edit' => false
         ]);
@@ -89,7 +89,7 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        return view('app.produto.form', [
+        return view('app.produto.edit', [
             'produto' => $produto,
             'unidades' => Unidade::all(),
             'edit' => true
