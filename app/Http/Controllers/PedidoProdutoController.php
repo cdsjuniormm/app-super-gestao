@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Pedido;
 use App\PedidoProduto;
+use App\Produto;
 use Illuminate\Http\Request;
 
 class PedidoProdutoController extends Controller
@@ -20,11 +22,16 @@ class PedidoProdutoController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param \App\Pedido $pedido
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Pedido $pedido)
     {
-        //
+        return view('app.pedido-produto.create', [
+            'pedido' => $pedido,
+            'produtos' => Produto::all()
+        ]);
     }
 
     /**
@@ -35,7 +42,22 @@ class PedidoProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'produto_id' => 'exists:produtos,id',
+                'pedido_id' => 'exists:pedidos,id'
+            ],
+            [
+                'produto_id.exists' => 'Produto não encontrado.',
+                'pedido_id.exists' => 'Pedido não encontrado.'
+            ]
+        );
+
+        PedidoProduto::create($request->all());
+
+        return redirect()->route('pedido-produto.create', [
+            'pedido' => $request->get('pedido_id')
+        ]);
     }
 
     /**

@@ -29,7 +29,7 @@
                                 <td>{{ $pedido->id }}</td>
                                 <td>{{ $pedido->cliente->nome }}</td>
                                 <td><a href="{{ route('pedido.show', ['pedido' => $pedido->id]) }}">Exibir</a></td>
-                                <td><a href="{{ route('pedido.edit', ['pedido' => $pedido->id]) }}">Editar</a></td>
+                                <td><a href="{{ route('pedido-produto.create', ['pedido' => $pedido->id]) }}">Adicionar produtos</a></td>
                                 <td>
                                     <form action="{{ route('pedido.destroy', ['pedido' => $pedido->id]) }}" id="destroy_{{ $pedido->id }}" method="POST">
                                         @csrf

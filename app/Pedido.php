@@ -17,4 +17,9 @@ class Pedido extends Model
     {
         return $this->belongsTo('App\Cliente');
     }
+
+    public function produtos()
+    {
+        return $this->belongsToMany('App\Produto', 'pedido_produtos');
+    }
 }

@@ -94,7 +94,15 @@ Route::middleware(AuthMiddleware::class)
 
     Route::resource('pedido', 'PedidoController');
 
-    Route::resource('pedido-produto', 'PedidoProdutoController');
+    Route::get(
+        'pedido-produto/create/{pedido}',
+        'PedidoProdutoController@create'
+    )->name('pedido-produto.create');
+
+    Route::put(
+        'pedido-produto/store',
+        'PedidoProdutoController@store'
+    )->name('pedido-produto.store');
 });
 
 Route::fallback(function () {
