@@ -57,11 +57,6 @@ Route::middleware(AuthMiddleware::class)
     )->name('app.logout');
 
     Route::get(
-        '/cliente',
-        'ClienteController@index'
-    )->name('app.cliente');
-
-    Route::get(
         '/fornecedor',
         'FornecedorController@index'
     )->name('app.fornecedor');
@@ -94,6 +89,12 @@ Route::middleware(AuthMiddleware::class)
     Route::resource('produto', 'ProdutoController');
 
     Route::resource('produto-detalhe', 'ProdutoDetalheController');
+
+    Route::resource('cliente', 'ClienteController');
+
+    Route::resource('pedido', 'PedidoController');
+
+    Route::resource('pedido-produto', 'PedidoProdutoController');
 });
 
 Route::fallback(function () {
