@@ -16,4 +16,9 @@ class ProdutoDetalhe extends Model
         'largura',
         'unidade_id'
     ];
+
+    public function produto()
+    {
+        return $this->belongsTo('App\Produto');
+    }
 }
