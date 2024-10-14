@@ -17,6 +17,7 @@
             <div style="width: 30%; margin: auto;">
                 @component('app.produto.component.form', [
                     'edit' => $edit,
+                    'fornecedores' => $fornecedores,
                     'unidades' => $unidades,
                     'produto' => $produto
                 ])

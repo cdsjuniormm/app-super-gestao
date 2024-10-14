@@ -34,7 +34,7 @@
                             <tr>
                                 <td>{{ $produto->nome }}</td>
                                 <td>{{ $produto->descricao }}</td>
-                                <td>{{ $produto->fornecedor->nome }}</td>
+                                <td>{{ $produto->fornecedor->nome ?? '' }}</td>
                                 <td>{{ $produto->peso }}</td>
                                 <td>{{ $produto->produtoDetalhe->altura ?? '' }}</td>
                                 <td>{{ $produto->produtoDetalhe->largura ?? '' }}</td>

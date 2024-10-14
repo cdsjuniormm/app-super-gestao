@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Fornecedor;
 use App\Produto;
 use App\Unidade;
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ class ProdutoController extends Controller
     public function create()
     {
         return view('app.produto.create', [
+            'fornecedores' => Fornecedor::all(),
             'unidades' => Unidade::all(),
             'edit' => false
         ]);
@@ -48,18 +50,8 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $request->validate(
-            [
-                'nome' => 'between:3,100',
-                'descricao' => 'between:5,2000',
-                'peso' => 'required',
-                'unidade_id' => 'exists:unidades,id'
-            ],
-            [
-                'nome.between' => 'Campo deve ter entre 3 e 100 caracteres.',
-                'descricao.between' => 'Campo deve ter entre 5 e 2000 caracteres.',
-                'peso.required' => 'Campo obrigatório.',
-                'unidade_id.exists' => 'Unidade inválida.'
-            ]
+            Produto::REGRAS,
+            Produto::MENSAGENS
         );
 
         Produto::create($request->all());
@@ -91,6 +83,7 @@ class ProdutoController extends Controller
     {
         return view('app.produto.edit', [
             'produto' => $produto,
+            'fornecedores' => Fornecedor::all(),
             'unidades' => Unidade::all(),
             'edit' => true
         ]);
@@ -106,6 +99,11 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
+        $request->validate(
+            Produto::REGRAS,
+            Produto::MENSAGENS
+        );
+
         $produto->update($request->all());
 
         return redirect()->route('produto.show', [
