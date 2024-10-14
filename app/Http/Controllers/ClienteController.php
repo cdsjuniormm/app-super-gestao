@@ -27,7 +27,9 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.cliente.create', [
+            'edit' => false
+        ]);
     }
 
     /**
@@ -38,7 +40,14 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            Cliente::REGRAS,
+            Cliente::MENSAGENS
+        );
+
+        Cliente::create($request->all());
+
+        return redirect()->route('cliente.index');
     }
 
     /**
@@ -60,7 +69,10 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('app.cliente.edit', [
+            'edit' => true,
+            'cliente' => $cliente
+        ]);
     }
 
     /**
@@ -72,8 +84,15 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
-    }
+        $request->validate(
+            Cliente::REGRAS,
+            Cliente::MENSAGENS
+        );
+
+        $cliente->update($request->all());
+
+        return redirect()->route('cliente.index');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -83,6 +102,8 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+
+        return redirect()->route('cliente.index');
     }
 }
