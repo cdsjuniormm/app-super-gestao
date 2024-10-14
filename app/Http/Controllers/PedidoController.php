@@ -12,9 +12,12 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('app.pedido.index', [
+            'pedidos' => Pedido::paginate(10),
+            'request' => $request->all()
+        ]);
     }
 
     /**
