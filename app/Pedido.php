@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pedido extends Model
 {
+    /**
+     * @inheritDoc
+     */
+    protected $fillable = [
+        'cliente_id'
+    ];
+
     public function cliente()
     {
         return $this->belongsTo('App\Cliente');
