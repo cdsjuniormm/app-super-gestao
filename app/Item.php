@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Exemplo de model com nome diferente da tabela.
  * 
- * Para ajustar rotas que tenham com o nome da tabela `produtos`,
+ * Para ajustar rotas que tenham o nome da tabela `produtos`,
  * as actions que recebem `App\Produtos` devem passar a receber $id.
  */
 class Item extends Model

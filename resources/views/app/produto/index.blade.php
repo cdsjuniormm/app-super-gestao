@@ -19,6 +19,7 @@
                     <thead>
                         <th>Nome</th>
                         <th>Descrição</th>
+                        <th>Fornecedor</th>
                         <th>Peso</th>
                         <th>Altura</th>
                         <th>Largura</th>
@@ -33,6 +34,7 @@
                             <tr>
                                 <td>{{ $produto->nome }}</td>
                                 <td>{{ $produto->descricao }}</td>
+                                <td>{{ $produto->fornecedor->nome }}</td>
                                 <td>{{ $produto->peso }}</td>
                                 <td>{{ $produto->produtoDetalhe->altura ?? '' }}</td>
                                 <td>{{ $produto->produtoDetalhe->largura ?? '' }}</td>
