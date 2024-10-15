@@ -38,6 +38,7 @@ class PedidoProdutoController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,15 +46,21 @@ class PedidoProdutoController extends Controller
         $request->validate(
             [
                 'produto_id' => 'exists:produtos,id',
-                'pedido_id' => 'exists:pedidos,id'
+                'pedido_id' => 'exists:pedidos,id',
+                'quantidade' => 'numeric'
             ],
             [
                 'produto_id.exists' => 'Produto não encontrado.',
-                'pedido_id.exists' => 'Pedido não encontrado.'
+                'pedido_id.exists' => 'Pedido não encontrado.',
+                'quantidade.numeric' => 'Campo deve ter valor numérico.'
             ]
         );
 
-        PedidoProduto::create($request->all());
+        Pedido::find($request->get('pedido_id'))->produtos()->attach([
+            $request->get('produto_id') => [
+                'quantidade' => $request->get('quantidade')
+            ]
+        ]);
 
         return redirect()->route('pedido-produto.create', [
             'pedido' => $request->get('pedido_id')

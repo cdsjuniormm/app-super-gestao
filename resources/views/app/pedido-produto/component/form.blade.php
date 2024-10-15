@@ -15,7 +15,6 @@
                 <td>{{ $produto->nome }}</td>
                 <td>{{ $produto->pivot->created_at->format('d/m/Y') }}</td>
             </tr>
-            {{ $produto->nome }} <br>
         @empty
             <tr>
                 <td colspan="3">
@@ -37,6 +36,9 @@
         @endforeach
     </select>
     {{ $errors->has('produto_id') ? $errors->first('produto_id') : '' }}
+    <br>
+    <input type="number" name="quantidade" value="{{ old('quantidade') }}">
+    {{ $errors->has('quantidade') ? $errors->first('quantidade') : '' }}
     <br>
     <button type="submit" class="borda-preta">Adicionar</button>
 </form>
