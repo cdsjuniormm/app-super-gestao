@@ -19,6 +19,7 @@
                     <thead>
                         <th>ID</th>
                         <th>Cliente</th>
+                        <th>Produtos</th>
                         <th>Visualizar</th>
                         <th>Editar</th>
                         <th>Excluír</th>
@@ -28,6 +29,9 @@
                             <tr>
                                 <td>{{ $pedido->id }}</td>
                                 <td>{{ $pedido->cliente->nome }}</td>
+                                <td>
+                                    {{ implode(', ', $pedido->produtos->pluck('nome')->toArray()) }}
+                                </td>
                                 <td><a href="{{ route('pedido.show', ['pedido' => $pedido->id]) }}">Exibir</a></td>
                                 <td><a href="{{ route('pedido-produto.create', ['pedido' => $pedido->id]) }}">Adicionar produtos</a></td>
                                 <td>
