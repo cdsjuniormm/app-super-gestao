@@ -1,13 +1,31 @@
+<h2>Detalhes do pedido</h2>
 <p>Pedido ID: {{ $pedido->id }}</p>
 <p>Cliente: {{ $pedido->cliente->nome }}</p>
-<p>
-    Produtos: <br>
-    @forelse ($pedido->produtos as $produto)
-        {{ $produto->nome }} <br>
-    @empty
-        Ainda não há produtos cadastrados.
-    @endforelse
-</p>
+<h2>Produtos</h2>
+<table border="1" style="margin: auto">
+    <thead>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Data de Cadastro</th>
+    </thead>
+    <tbody>
+        @forelse ($pedido->produtos as $produto)
+            <tr>
+                <td>{{ $produto->id }}</td>
+                <td>{{ $produto->nome }}</td>
+                <td>{{ $produto->pivot->created_at->format('d/m/Y') }}</td>
+            </tr>
+            {{ $produto->nome }} <br>
+        @empty
+            <tr>
+                <td colspan="3">
+                    Ainda não há produtos cadastrados.
+                </td>
+            </tr>
+        @endforelse
+        
+    </tbody>
+</table>
 <form action="{{ route('pedido-produto.store') }}" method="POST">
     @csrf
     @method('PUT')
