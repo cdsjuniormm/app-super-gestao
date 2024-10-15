@@ -7,6 +7,7 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Data de Cadastro</th>
+        <th>Excluir</th>
     </thead>
     <tbody>
         @forelse ($pedido->produtos as $produto)
@@ -14,6 +15,14 @@
                 <td>{{ $produto->id }}</td>
                 <td>{{ $produto->nome }}</td>
                 <td>{{ $produto->pivot->created_at->format('d/m/Y') }}</td>
+                <td>
+                    <form action="{{ route('pedido-produto.destroy', ['pedidoProduto' => $produto->pivot->id]) }}" id="form_{{ $produto->pivot->id }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="pedido_produto_id" value="{{ $produto->pivot->id }}">
+                        <a href="#" onclick="document.getElementById('form_{{ $produto->pivot->id }}').submit()">Excluir</a>
+                    </form>
+                </td>
             </tr>
         @empty
             <tr>

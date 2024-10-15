@@ -104,11 +104,18 @@ class PedidoProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PedidoProduto  $pedidoProduto
+     * @param \App\PedidoProduto $name
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(PedidoProduto $pedidoProduto)
     {
-        //
+        $pedidoId = $pedidoProduto->pedido_id;
+
+        $pedidoProduto->delete();
+
+        return redirect()->route('pedido-produto.create', [
+            'pedido' => $pedidoId
+        ]);
     }
 }

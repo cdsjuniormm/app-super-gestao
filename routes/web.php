@@ -103,6 +103,11 @@ Route::middleware(AuthMiddleware::class)
         'pedido-produto/store',
         'PedidoProdutoController@store'
     )->name('pedido-produto.store');
+
+    Route::delete(
+        'pedido-produto/destroy/{pedidoProduto}',
+        'PedidoProdutoController@destroy'
+    )->name('pedido-produto.destroy');
 });
 
 Route::fallback(function () {
